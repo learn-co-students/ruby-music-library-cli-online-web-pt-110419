@@ -23,6 +23,16 @@ class MusicLibraryController
         
         if user_response == "list songs"
             list_songs
+        elsif user_response == "list artists"
+            list_artists
+        elsif user_response == "list genres"
+            list_genres
+        elsif user_response == "list artist"
+            list_songs_by_artist
+        elsif user_response == "list genre"
+            list_songs_by_genre
+        elsif user_response == "play song"
+            play_song
         end
         user_response= gets.chomp
     end
