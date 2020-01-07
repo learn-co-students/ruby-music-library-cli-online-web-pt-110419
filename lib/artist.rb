@@ -1,4 +1,8 @@
+require_relative './concerns/findable'
+
 class Artist
+
+  extend Concerns::Findable
 
 attr_accessor :name
 attr_reader :songs
@@ -34,5 +38,9 @@ attr_reader :songs
     # if song.artist exists then dont do add_song else do add_song
   end
     @songs.push(song) unless @songs.include?(song)
+  end
+
+  def genres
+    @songs.collect {|song| song.genre}.uniq
   end
 end
