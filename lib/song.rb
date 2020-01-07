@@ -57,10 +57,14 @@ attr_reader :artist, :genre
     song = filename.split(" - ")
     artist = song[0]
     song_name = song[1]
-    genre = song[2]
-    new_song = self.new(song_name, artist)
-    new_song.add_song(self)
+    genre = song[2].gsub(".mp3", "")
+    genre = Genre.find_or_create_by_name(genre)
+    artist = Artist.find_or_create_by_name(artist)
+    new_song = self.new(song_name, artist, genre)
     # binding.pry
+  end
+
+  def self.create_from_filename(filename)
   end
 
 end
