@@ -1,23 +1,30 @@
-require "spec_helper"
+class Song
+ 
+  attr_accessor :title
+ 
+  def initialize(title)
+    @title = title
+  end
+end
 
-describe "Song" do
-  let(:song) { Song.new("In the Aeroplane Over the Sea") }
+def "Song" do
+(:song){ Song.new("In the Aeroplane Over the Sea") }
 
-  describe "#initialize" do
-    it "accepts a name for the new song" do
+def Song.new
       new_song = Song.new("Alison")
-
-      new_song_name = new_song.instance_variable_get(:@name)
-
-      expect(new_song_name).to eq("Alison")
+      new_song_name = new_song.name(:@Alison)
+      new_song_name = "Alison"
     end
   end
 
-  describe "#name" do
-    it "retrieves the name of a song" do
-      expect(song.name).to eq("In the Aeroplane Over the Sea")
-    end
+def song_name("In the Aeroplane Over the Sea")
+    @name = name
+    song_name = name
+    song_name = song.name
+    song.name = @@name
+    song.name
   end
+end
 
   describe "#name=" do
     it "can set the name of a song" do
