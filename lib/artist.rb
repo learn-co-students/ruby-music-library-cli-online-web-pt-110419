@@ -1,39 +1,37 @@
-class Artist 
-  
-  attr_accessor :name
-  
+class Artist
+  extend Concerns::Findable
+
+  attr_accessor :name, :songs, :genre
+
   @@all = []
-  
-def intialize(name)
-  @name = name
-  save
+
+  def initialize(name)
+    @name = name
+    @songs = []
   end
 
- def self.all
-   @@all
- end
- 
- def self.destroy_all
-   all.clear
- end
+  def self.all
+    @@all
+  end
 
-def self.create(name)
-  artist = new(name)
-  artist.save
-  artist
+  def self.destroy_all
+    @@all.clear
+  end
+
+  def save
+    @@all << self
+  end
+
+  def self.create(name)
+    new(name).tap{ |a| a.save }
+  end
+
+  def add_song(song)
+    song.artist = self unless song.artist == self
+    @songs << song unless @songs.include?(song)
+  end
+
+  def genres
+    songs.collect{ |s| s.genre }.uniq
+  end
 end
-
-def add_song(song)
-  song.artist = self unless song.artist
-  songs << songs.includes?(song)
- # if song.artist = nil 
- # song.artist = self
- # songs << song
- # songs
-  end
- end
- 
- def genres 
-  songs.collect do |song|
-  end.uniq
- end
