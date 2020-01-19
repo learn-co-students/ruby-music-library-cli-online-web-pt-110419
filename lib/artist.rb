@@ -33,11 +33,10 @@ class Artist
       @songs << song unless songs.include?(song)
   end 
   
-  def genres 
-    songs.collect do |song|
+ def genres
+    self.songs.map do |song|
       song.genre
-    end
-    
-  end 
+    end.uniq
+  end
   
 end
